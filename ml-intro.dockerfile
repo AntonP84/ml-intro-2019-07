@@ -3,6 +3,10 @@ FROM python:3.6.8-stretch
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -q -r requirements.txt
 
+# install Anacoda, required by MLFlow
+RUN curl -O https://repo.anaconda.com/archive/Anaconda3-2019.03-Linux-x86_64.sh && \
+    bash Anaconda3-2019.03-Linux-x86_64.sh -b
+
 # enable Jupyter extensions
 ENV JUPYTER_TOKEN=123
 RUN jupyter contrib nbextension install --system --InstallContribNbextensionsApp.log_level=WARN && \
@@ -15,8 +19,8 @@ RUN jupyter contrib nbextension install --system --InstallContribNbextensionsApp
 
 COPY *.ipynb /notebooks/
 
-# Jupyter
-EXPOSE 8888
+# Jupyter, MLFLow
+EXPOSE 8888 5000
 
 VOLUME /notebooks
 

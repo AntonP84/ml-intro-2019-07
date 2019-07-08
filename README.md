@@ -26,4 +26,4 @@ docker container run -d --rm \
     ml-intro
 ```
 
-- open <https://localhost:8888> in your browser
+- open <https://localhost:8888> in your browser, enter your token *123*
